@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import org.json.JSONException;
+
 import util.Log;
 /**
  * @author rajat
@@ -29,8 +31,9 @@ public class Main {
 
 	/**
 	 * @param args
+	 * @throws JSONException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws JSONException {
 		// TODO Auto-generated method stub
 		
 		Scanner scanner = new Scanner(System.in);
