@@ -4,6 +4,7 @@
 package main;
 import aPI.Twitter;
 import aPI.Google;
+import aPI.searchAPIs;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -37,8 +38,12 @@ public class Main {
         String inputFilePath = scanner.nextLine(); // Provide input file path containing set of related words
         System.out.println("Please enter the output file.");
         String outputFileName = scanner.nextLine();			// Provide output file path which will contain the expanded set
+        System.out.println("Please enter the search API you want to use.");
+		String API = scanner.nextLine();
 		System.out.println("Please enter number of results you want.");
 		int noOfResults = scanner.nextInt();
+		
+		System.out.println(API);
 		BufferedReader reader = null;
 		FileWriter writer = null;
 		String line;
@@ -49,10 +54,8 @@ public class Main {
 			writer = new FileWriter(outputFileName);
 			while ((line = reader.readLine()) != null && !line.equals("")) {
 				Log.log.info("======= "+line+" =======");
-				Twitter twit = new Twitter();
-				Google gog = new Google();
-			   // twit.Twit(line);
-			    gog.Google(line);
+				searchAPIs sp = new searchAPIs();
+				sp.apiType(API,line,noOfResults);
 				seedList.addAll(Arrays.asList(line.toLowerCase().split(" ")));	
 				try {							
 					

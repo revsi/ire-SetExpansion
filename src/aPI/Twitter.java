@@ -25,8 +25,9 @@ public class Twitter {
       //  System.out.println("Please enter the search term.");
        // String searchTerm = scanner.nextLine();
 		twitter4j.Twitter twitter = tf.getInstance();
-		String searchTerm = line;
-		searchTerm = "sharukh";
+		String arr[];
+		arr = line.split(" ");
+		String searchTerm = arr[0];
 		//System.out.println(searchTerm);
 		try {
 		Query query = new Query(searchTerm);
