@@ -23,7 +23,7 @@ public class Log {
 			e.printStackTrace();
 		}
 		temp.setFormatter(new SimpleFormatter());
-		log.addHandler(temp);
+		log.addHandler(temp);// handle exceptions
 	}
 	
 	public void writeLog(){
