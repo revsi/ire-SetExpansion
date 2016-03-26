@@ -1,10 +1,9 @@
 package aPI;
 
-public class Faroo {
+public class DuckDuck {
 
-	public Faroo() {
+	public DuckDuck() {
 		// TODO Auto-generated constructor stub
-		
 	}
 
 }
