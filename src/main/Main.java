@@ -2,7 +2,7 @@
  * 
  */
 package main;
-
+import aPI.Twitter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -41,7 +41,6 @@ public class Main {
 		BufferedReader reader = null;
 		FileWriter writer = null;
 		String line;
-		
 		ArrayList<String> seedList = new ArrayList<String>();
 		
 		try {
@@ -49,6 +48,9 @@ public class Main {
 			writer = new FileWriter(outputFileName);
 			while ((line = reader.readLine()) != null && !line.equals("")) {
 				Log.log.info("======= "+line+" =======");
+				Twitter twit = new Twitter();
+
+			    twit.Twit(line);
 				seedList.addAll(Arrays.asList(line.toLowerCase().split(" ")));	
 				try {							
 					
