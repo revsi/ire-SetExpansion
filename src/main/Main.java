@@ -3,6 +3,7 @@
  */
 package main;
 import aPI.Twitter;
+import aPI.Google;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -49,8 +50,9 @@ public class Main {
 			while ((line = reader.readLine()) != null && !line.equals("")) {
 				Log.log.info("======= "+line+" =======");
 				Twitter twit = new Twitter();
-
-			    twit.Twit(line);
+				Google gog = new Google();
+			   // twit.Twit(line);
+			    gog.Google(line);
 				seedList.addAll(Arrays.asList(line.toLowerCase().split(" ")));	
 				try {							
 					
