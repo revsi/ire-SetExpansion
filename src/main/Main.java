@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import util.Log;
 /**
@@ -30,10 +31,13 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		String inputFilePath=args[0];						// Provide input file path containing set of related words
-		String outputFileName=args[1];						// Provide output file path which will contain the expanded set
-		int noOfResults = Integer.parseInt(args[2]);
-		
+		Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the input file.");
+        String inputFilePath = scanner.nextLine(); // Provide input file path containing set of related words
+        System.out.println("Please enter the output file.");
+        String outputFileName = scanner.nextLine();			// Provide output file path which will contain the expanded set
+		System.out.println("Please enter number of results you want.");
+		int noOfResults = scanner.nextInt();
 		BufferedReader reader = null;
 		FileWriter writer = null;
 		String line;
