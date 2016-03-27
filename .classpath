@@ -3,15 +3,15 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="lib" path="src/supportedJars/twitter4j-core-4.0.2.jar"/>
-	<classpathentry kind="lib" path="/home/sonam/git/ire-SetExpansion/src/supportedJars/jsoup-1.8.1.jar"/>
-	<classpathentry kind="lib" path="/home/sonam/git/ire-SetExpansion/src/supportedJars/apache-httpcomponents-httpclient.jar"/>
-	<classpathentry kind="lib" path="/home/sonam/git/ire-SetExpansion/src/supportedJars/apache-httpcomponents-httpcore.jar"/>
-	<classpathentry kind="lib" path="/home/sonam/git/ire-SetExpansion/src/supportedJars/gson-2.2.2.jar"/>
-	<classpathentry kind="lib" path="/home/sonam/git/ire-SetExpansion/src/supportedJars/httpclient-4.0.3.jar"/>
-	<classpathentry kind="lib" path="/home/sonam/git/ire-SetExpansion/src/supportedJars/httpcore.jar"/>
-	<classpathentry kind="lib" path="/home/sonam/git/ire-SetExpansion/src/supportedJars/java-json.jar"/>
-	<classpathentry kind="lib" path="/home/sonam/git/ire-SetExpansion/src/supportedJars/json-lib-2.4-jdk15.jar"/>
-	<classpathentry kind="lib" path="/home/sonam/git/ire-SetExpansion/src/supportedJars/jsoup-1.8.3.jar"/>
-	<classpathentry kind="lib" path="/home/sonam/git/ire-SetExpansion/src/supportedJars/org-apache-commons-codec.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/apache-httpcomponents-httpclient.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/apache-httpcomponents-httpcore.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/httpclient-4.0.3.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/httpcore.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/java-json.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/jsoup-1.8.1.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/jsoup-1.8.3.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/org-apache-commons-codec.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
