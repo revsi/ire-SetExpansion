@@ -9,6 +9,7 @@ public class searchAPIs
 	public void apiType(String api,String line,int noOfResults) throws IOException, JSONException
 	{
 		
+		api = api.toUpperCase();
 		switch (api) {
 		case "BING":
 			Bing b = new Bing();

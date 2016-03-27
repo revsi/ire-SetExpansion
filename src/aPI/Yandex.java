@@ -36,10 +36,12 @@ public class Yandex
 		String searchTerm = arr[0];
 		for(int i=1;i< arr.length;i++)
 		{
-			searchTerm = searchTerm + "+" + arr[i];
+			searchTerm = searchTerm + " " + arr[i];
 		}
 		String query = searchTerm;
+		
 		System.out.println(query);
+		query = query.replaceAll(" ","%20");
 		try{
 			while(starting < records)
 			{

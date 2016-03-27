@@ -30,9 +30,9 @@ public class Twitter {
 		String searchTerm = arr[0];
 		for(int i=1;i< arr.length;i++)
 		{
-			searchTerm = searchTerm + "+" + arr[i];
+			searchTerm = searchTerm + " " + arr[i];
 		}
-		
+	//	searchTerm = "honda chevrolet maruti suzuki";
 		//System.out.println(searchTerm);
 		try {
 		Query query = new Query(searchTerm);
@@ -42,7 +42,7 @@ public class Twitter {
 		do {
 		result = ((SearchResource) twitter).search(query);
 		List<Status> tweets = result.getTweets();
-		System.out.println(searchTerm);
+		System.out.println(result);
 
 		for (Status tweet : tweets) {
 			count++;

@@ -37,10 +37,10 @@ public class Bing {
 		String searchTerm = arr[0];
 		for(int i=1;i< arr.length;i++)
 		{
-			searchTerm = searchTerm + "+" + arr[i];
+			searchTerm = searchTerm + " " + arr[i];
 		}
 		
-		String query ="";
+		String query = searchTerm;
 		query = query.replaceAll(" ", "%20");
 		String accountKey = "rLSasvRW9cvlU5fG9hoSGjJG2M1eIjR+Ld27nFC9Pj8=";
 		byte[] accountKeyBytes = Base64.encodeBase64((accountKey + ":" + accountKey).getBytes());
@@ -66,6 +66,7 @@ public class Bing {
 		JSONArray arr1 = obj.getJSONObject("d").getJSONArray("results");
 		for (int i = 0; i < arr1.length(); i++){
 			String post_id = arr1.getJSONObject(i).getString("Url");
+			System.out.println(post_id);
 			String description=arr1.getJSONObject(i).getString("Description");		// Obtain all the urls for the given search query
 			String title=arr1.getJSONObject(i).getString("Title");
 			System.out.println(description);

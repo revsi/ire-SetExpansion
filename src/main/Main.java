@@ -41,7 +41,7 @@ public class Main {
         String inputFilePath = scanner.nextLine(); // Provide input file path containing set of related words
         System.out.println("Please enter the output file.");
         String outputFileName = scanner.nextLine();			// Provide output file path which will contain the expanded set
-        System.out.println("Please enter the search API you want to use in upper CASE.");
+        System.out.println("Please enter the search API you want to use .");
 		String API = scanner.nextLine();
 		System.out.println("Please enter number of results you want.");
 		int noOfResults = scanner.nextInt();

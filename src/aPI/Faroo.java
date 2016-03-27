@@ -1,10 +1,12 @@
 package aPI;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +18,7 @@ import util.Log;
 
 public class Faroo {
 
-	public void Faroo(String str) {
+	public void Faroo(String str) throws UnsupportedEncodingException {
 		// TODO Auto-generated constructor stub
 		int starting=1,records = 10;
 		Set<String> result=new HashSet<String>();
@@ -33,13 +35,16 @@ public class Faroo {
 		{
 			searchTerm = searchTerm + " " + arr[i];
 		}
-		String query = searchTerm;
+		String query;
+
+		query = URLEncoder.encode(searchTerm,"UTF-8");
 		try{
 			while(starting<records){
 				String start=Integer.toString(starting);
-				//query = query.replaceAll(" ","%20");
+				query = query.replaceAll(" ","+");
 				url=new URL("http://www.faroo.com/api?q="+query+"&start="+start+"&length=10&l=en&src=web&i=false&f=json&key="+FarooKey);
 				Log.log.info("======= "+url+" =======");
+				System.out.println(url);
 				conn=(HttpURLConnection) url.openConnection(proxy);
 				conn.setRequestMethod("GET");
 				br=new BufferedReader(new InputStreamReader((conn.getInputStream())));
