@@ -18,6 +18,11 @@ public class Google {
 		String arr[];
 		arr = line.split(" ");
 		String searchTerm = arr[0];
+		for(int i=1;i< arr.length;i++)
+		{
+			searchTerm = searchTerm + "+" + arr[i];
+		}
+		
 		int num = 10;
 		System.out.println("searching for :" + searchTerm);
 		String searchURL = GOOGLE_SEARCH_URL + "?q="+searchTerm+"&num="+num;

@@ -31,6 +31,8 @@ public class searchAPIs
 			fr.Faroo(line);
 		      break;
 		case "WIKI":
+			Wiki wk = new Wiki();
+			wk.Wiki(line);
 			 break;
 		default :
 			System.out.println("Sorry , you have entered a wrong API !!!!");

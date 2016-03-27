@@ -13,5 +13,8 @@
 	<classpathentry kind="lib" path="src/supportedJars/jsoup-1.8.1.jar"/>
 	<classpathentry kind="lib" path="src/supportedJars/jsoup-1.8.3.jar"/>
 	<classpathentry kind="lib" path="src/supportedJars/org-apache-commons-codec.jar"/>
+	<classpathentry kind="lib" path="/home/sonam/Downloads/http-request-3.0.jar.zip"/>
+	<classpathentry kind="lib" path="/home/sonam/Downloads/http-core-4.1.jar.zip"/>
+	<classpathentry kind="lib" path="/home/sonam/Downloads/apache-httpcomponents-httpcore.jar.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
