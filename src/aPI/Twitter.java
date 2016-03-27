@@ -28,6 +28,11 @@ public class Twitter {
 		String arr[];
 		arr = line.split(" ");
 		String searchTerm = arr[0];
+		for(int i=1;i< arr.length;i++)
+		{
+			searchTerm = searchTerm + "+" + arr[i];
+		}
+		
 		//System.out.println(searchTerm);
 		try {
 		Query query = new Query(searchTerm);

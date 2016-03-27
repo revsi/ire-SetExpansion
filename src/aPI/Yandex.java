@@ -33,7 +33,12 @@ public class Yandex
 		BufferedReader br = null;
 		String arr[];
 		arr = str.split(" ");
-		String query = "WORLD";
+		String searchTerm = arr[0];
+		for(int i=1;i< arr.length;i++)
+		{
+			searchTerm = searchTerm + "+" + arr[i];
+		}
+		String query = searchTerm;
 		System.out.println(query);
 		try{
 			while(starting < records)

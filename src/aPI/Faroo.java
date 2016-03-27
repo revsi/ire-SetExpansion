@@ -12,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import util.Log;
+
 public class Faroo {
 
 	public void Faroo(String str) {
@@ -26,12 +28,18 @@ public class Faroo {
 		String FarooKey = "0hab7LSvVHwzv-aqvNyzljNfZoo_";
 		String arr[];
 		arr = str.split(" ");
-		String query = arr[0];
+		String searchTerm = arr[0];
+		for(int i=1;i< arr.length;i++)
+		{
+			searchTerm = searchTerm + " " + arr[i];
+		}
+		String query = searchTerm;
 		try{
 			while(starting<records){
 				String start=Integer.toString(starting);
-				query = query.replaceAll(" ","%20");
+				//query = query.replaceAll(" ","%20");
 				url=new URL("http://www.faroo.com/api?q="+query+"&start="+start+"&length=10&l=en&src=web&i=false&f=json&key="+FarooKey);
+				Log.log.info("======= "+url+" =======");
 				conn=(HttpURLConnection) url.openConnection(proxy);
 				conn.setRequestMethod("GET");
 				br=new BufferedReader(new InputStreamReader((conn.getInputStream())));

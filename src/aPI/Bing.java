@@ -34,7 +34,13 @@ public class Bing {
 		BufferedReader br = null;
 		String arr[];
 		arr = line.split(" ");
-		String query = arr[0];
+		String searchTerm = arr[0];
+		for(int i=1;i< arr.length;i++)
+		{
+			searchTerm = searchTerm + "+" + arr[i];
+		}
+		
+		String query ="";
 		query = query.replaceAll(" ", "%20");
 		String accountKey = "rLSasvRW9cvlU5fG9hoSGjJG2M1eIjR+Ld27nFC9Pj8=";
 		byte[] accountKeyBytes = Base64.encodeBase64((accountKey + ":" + accountKey).getBytes());
