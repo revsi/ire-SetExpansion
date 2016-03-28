@@ -44,6 +44,8 @@ public class Bing {
 
 		conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
+		conn.setConnectTimeout(10000);
+		conn.setReadTimeout(10000);
 		conn.setRequestProperty("Authorization", "Basic " + accountKeyEnc);
 		br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 		StringBuilder sb = new StringBuilder();
@@ -51,14 +53,22 @@ public class Bing {
 		while ((output = br.readLine()) != null) {
 			sb.append(output);
 		}
+		conn.disconnect();
 		JSONObject obj;
 		obj = new JSONObject(sb.toString());
 		JSONArray arr1 = obj.getJSONObject("d").getJSONArray("results");
 		for (int i = 0; i < arr1.length(); i++){
 			String post_id = arr1.getJSONObject(i).getString("Url");
 			System.out.println(post_id);
-			Document doc = Jsoup.connect(post_id).userAgent("Mozilla/5.0").get();
-			 System.out.println(doc);
+			Document doc =null;
+			try {
+				doc = Jsoup.connect(post_id).timeout(1000000).userAgent("Mozilla/5.0").get();
+			} catch(Exception e) {
+				continue;
+				
+			}
+			System.out.println(doc);
+			 
 			//String description=arr1.getJSONObject(i).getString("Description");		// Obtain all the urls for the given search query
 			//@SuppressWarnings("unused")
 			//String title=arr1.getJSONObject(i).getString("Title");

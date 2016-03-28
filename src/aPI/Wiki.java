@@ -61,7 +61,14 @@ try {
 					
 					System.out.println("Title : " + wikiDoc.substring((index = wikiDoc.indexOf("title=\"", index) + 7),(index =  wikiDoc.indexOf("\"", (index + 1)) + 1) - 1));
 					System.out.println("URL : " + wikiDoc.substring((index = wikiDoc.indexOf("fullurl=\"", index) + 9) ,(index = wikiDoc.indexOf("\"", (index + 1)) + 1) - 1));
-					
+					Document doc1 =null;
+					try {
+						doc1 = Jsoup.connect(wikiDoc.substring((index = wikiDoc.indexOf("fullurl=\"", index) + 9) ,(index = wikiDoc.indexOf("\"", (index + 1)) + 1) - 1)).timeout(1000000).userAgent("Mozilla/5.0").get();
+					} catch(Exception e) {
+						continue;
+						
+					}
+					System.out.println(doc1);					
 					}
 				
 			}
