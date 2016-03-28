@@ -2,27 +2,17 @@ package aPI;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.http.HttpHost;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.conn.params.ConnRoutePNames;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
-import com.google.gson.Gson;
 public class Bing {
 
 	public void Bin(String line) throws IOException, JSONException 
@@ -67,9 +57,13 @@ public class Bing {
 		for (int i = 0; i < arr1.length(); i++){
 			String post_id = arr1.getJSONObject(i).getString("Url");
 			System.out.println(post_id);
-			String description=arr1.getJSONObject(i).getString("Description");		// Obtain all the urls for the given search query
-			String title=arr1.getJSONObject(i).getString("Title");
-			System.out.println(description);
+			Document doc = Jsoup.connect(post_id).userAgent("Mozilla/5.0").get();
+			 System.out.println(doc);
+			//String description=arr1.getJSONObject(i).getString("Description");		// Obtain all the urls for the given search query
+			//@SuppressWarnings("unused")
+			//String title=arr1.getJSONObject(i).getString("Title");
+			//System.out.println(description);
+			//Document doc1 = Jsoup.connect(post_id).userAgent("Mozilla/5.0").get(); // HTML source text for all URLS
 			/*myfinder.SetHTML(post_id);
 			LogUtil.log.info("aaa "+title+" "+ post_id+" "+description);
 			WebPage page = new WebPage(title, post_id,description);

@@ -1,8 +1,6 @@
 package aPI;
 
 import java.io.IOException;
-import java.util.Scanner;
- 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,7 +8,7 @@ import org.jsoup.select.Elements;
 
 public class Google {
 	//public static final String GOOGLE_SEARCH_URL = "http://www.google.com/search";
-	public void Google(String line)
+	public void Google(String line) throws IOException
 	{
 		System.getProperties().put("http.proxyHost", "proxy.iiit.ac.in");
 		System.getProperties().put("http.proxyPort", "8080");
@@ -36,7 +34,7 @@ public class Google {
 		}
          
         //below will print HTML data, save it to a file and open in browser to compare
-        //System.out.println(doc.html());
+       // System.out.println(doc.html());
          
         //If google search results HTML change the <h3 class="r" to <h3 class="r1"
         //we need to change below accordingly
@@ -45,7 +43,14 @@ public class Google {
         for (Element result : results) {
             String linkHref = result.attr("href");
             String linkText = result.text();
-            System.out.println("Text::" + linkText + ", URL::" + linkHref.substring(6, linkHref.indexOf("&")));
+            System.out.println("Text::" + linkText + ", URL::#" + linkHref.substring(7, linkHref.indexOf("&"))+"#");
+            if(linkHref.substring(7, linkHref.indexOf("&")).contains("http://") || 
+            		linkHref.substring(7, linkHref.indexOf("&")).contains("https://" ))
+            {
+            	Document doc1 = Jsoup.connect(linkHref.substring(7, linkHref.indexOf("&"))).userAgent("Mozilla/5.0").get(); // HTML source text for all URLS
+                System.out.println(doc1);
+            }
+            
         }
 		
 		

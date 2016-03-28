@@ -1,16 +1,2 @@
-Mar 28, 2016 2:35:48 AM main.Main main
+Mar 28, 2016 4:58:16 PM main.Main main
 INFO: ======= mango apple banana pineapple =======
-Mar 28, 2016 2:35:48 AM aPI.Faroo Faroo
-INFO: ======= http://www.faroo.com/api?q=mango+apple+banana+pineapple&start=1&length=10&l=en&src=web&i=false&f=json&key=0hab7LSvVHwzv-aqvNyzljNfZoo_ =======
-Mar 28, 2016 2:35:49 AM main.Main main
-INFO: ======= honda chevrolet maruti suzuki =======
-Mar 28, 2016 2:35:49 AM aPI.Faroo Faroo
-INFO: ======= http://www.faroo.com/api?q=honda+chevrolet+maruti+suzuki&start=1&length=10&l=en&src=web&i=false&f=json&key=0hab7LSvVHwzv-aqvNyzljNfZoo_ =======
-Mar 28, 2016 2:35:49 AM main.Main main
-INFO: ======= sony samsung xiaomi =======
-Mar 28, 2016 2:35:49 AM aPI.Faroo Faroo
-INFO: ======= http://www.faroo.com/api?q=sony+samsung+xiaomi&start=1&length=10&l=en&src=web&i=false&f=json&key=0hab7LSvVHwzv-aqvNyzljNfZoo_ =======
-Mar 28, 2016 2:35:49 AM main.Main main
-INFO: ======= lenovo dell hp =======
-Mar 28, 2016 2:35:49 AM aPI.Faroo Faroo
-INFO: ======= http://www.faroo.com/api?q=lenovo+dell+hp&start=1&length=10&l=en&src=web&i=false&f=json&key=0hab7LSvVHwzv-aqvNyzljNfZoo_ =======

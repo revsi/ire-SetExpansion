@@ -2,9 +2,6 @@
  * 
  */
 package main;
-import aPI.Twitter;
-import aPI.Google;
-import aPI.searchAPIs;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,20 +12,17 @@ import java.util.Scanner;
 
 import org.json.JSONException;
 
+import aPI.searchAPIs;
 import util.Log;
 /**
- * @author rajat
+ * @author sonam
  *
  */
 public class Main {
 
 	/**
 	 * 
-	 */
-	public Main() {
-		// TODO Auto-generated constructor stub
-	}
-
+	 
 	/**
 	 * @param args
 	 * @throws JSONException 

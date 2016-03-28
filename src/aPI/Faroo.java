@@ -73,6 +73,7 @@ public class Faroo {
 		JSONArray arr=obj.getJSONArray("results");					// parse the json for all the urls
 		for(int i=0;i<arr.length();i++){
 			String geturl=arr.getJSONObject(i).getString("url");
+			
 			output.add(geturl);
 		}
 		return output;
