@@ -23,4 +23,13 @@ public class word2vec {
 		return expandedset;
 	}
 
+	
+	public double compare(String w1, String w2, Word2Vec vec){
+		double cosSim = vec.similarity(w1, w2);
+	    //System.out.println(cosSim);
+		return cosSim;
+	
+	}
+	
+	
 }
