@@ -51,9 +51,9 @@ public class Wrapper {
 		}
 	}
 	
-	public static void wrap(String htmlText, String[] seeds)
+	public static void wrap(String htmlText, ArrayList<String> seedList)
 	{
-		int noOfSeeds = seeds.length;
+		int noOfSeeds = seedList.size();
 		int htmlLen = htmlText.length();
 		int fl;
 		trie.TrieNode trieLeft = trie.newn();
@@ -61,14 +61,14 @@ public class Wrapper {
 		int wrapNum = 1;
 		for(int i=0;i<noOfSeeds;i++)
 		{
-			int seedLen = seeds[i].length();
+			int seedLen = seedList.get(i).length();
 			
 			for(int j=0;j<htmlLen-seedLen+1;j++)
 			{
 				fl = 0;
 				for(int k=0;k<seedLen;k++)
 				{
-					if(htmlText.charAt(j+k) != seeds[i].charAt(k))
+					if(htmlText.charAt(j+k) != seedList.get(i).charAt(k))
 					{
 						fl = 1;
 						break;
