@@ -15,5 +15,7 @@
 	<classpathentry kind="lib" path="src/supportedJars/http-core-4.1.jar"/>
 	<classpathentry kind="lib" path="src/supportedJars/http-request-3.0.jar"/>
 	<classpathentry kind="lib" path="src/supportedJars/twitter4j-core-4.0.2.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/deeplearning4j-core-0.4-rc3.8.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/deeplearning4j-nlp-0.4-rc3.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
