@@ -1,11 +1,13 @@
 package main;
+import java.util.*;
 
 public class trie {
 	
 	static class TrieNode
 	{
 		TrieNode[] child;
-		boolean isEnd;
+		Hashtable isEnd;
+		Hashtable wrapNum;
 	}
 	
 	public static TrieNode newn()
@@ -15,11 +17,11 @@ public class trie {
 		{
 			newnode.child[i] = null;
 		}
-		newnode.isEnd = false;
+		newnode.isEnd = new Hashtable();
+		newnode.wrapNum = new Hashtable();
 		return newnode;
-			
 	}
-	public static void insert(TrieNode root,String key)
+	public static void insert(TrieNode root,String key, int seedNum, int wrapNum)
 	{
 		int len = key.length();
 		int index;
@@ -32,8 +34,11 @@ public class trie {
 			{
 				root.child[index] = newn();
 			}
+			root.isEnd.put(seedNum, 1);
+			root.wrapNum.put(wrapNum, 1);
 			root = root.child[index];
 		}
-		root.isEnd = true;
+		root.wrapNum.put(wrapNum, 1);
+		root.isEnd.put(seedNum, 1);
 	} 
 }
