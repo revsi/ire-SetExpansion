@@ -13,6 +13,8 @@ import java.util.Set;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import util.Log;
 
@@ -27,7 +29,7 @@ public class Faroo {
 		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy.iiit.ac.in", 8080));   // remove if not under a proxy
 		HttpURLConnection conn=null;
 		BufferedReader br=null;
-		String FarooKey = "0hab7LSvVHwzv-aqvNyzljNfZoo_";
+		String FarooKey = "uK3CYibtAnvuUpgG3JR4TrU7h6c_";
 		String arr[];
 		arr = str.split(" ");
 		String searchTerm = arr[0];
@@ -73,7 +75,14 @@ public class Faroo {
 		JSONArray arr=obj.getJSONArray("results");					// parse the json for all the urls
 		for(int i=0;i<arr.length();i++){
 			String geturl=arr.getJSONObject(i).getString("url");
-			
+			Document doc =null;
+			try {
+				doc = Jsoup.connect(geturl).timeout(1000000).userAgent("Mozilla/5.0").get();
+			} catch(Exception e) {
+				continue;
+				
+			}
+			System.out.println(doc);
 			output.add(geturl);
 		}
 		return output;
