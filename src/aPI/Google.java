@@ -27,7 +27,7 @@ public class Google {
 			seedList.add(arr[i]);
 		}
 		
-		int num = 10;
+		int num = 5;
 		System.out.println("searching for :" + searchTerm);
 		String searchURL = GOOGLE_SEARCH_URL + "?q="+searchTerm+"&num="+num;
         //without proper User-Agent, we will get 403 error
@@ -56,11 +56,9 @@ public class Google {
             	Document doc1 = Jsoup.connect(linkHref.substring(7, linkHref.indexOf("&"))).userAgent("Mozilla/5.0").get(); // HTML source text for all URLS
                // System.out.println(doc1);
             	Wrapper wp = new Wrapper();
-            	wp.wrap(doc1.text(),seedList);
-            	
-                
-            }
-            
+           // 	System.out.println(doc1.toString());
+            	wp.wrap(doc1.toString(),seedList);
+            }            
         }
 		
 		

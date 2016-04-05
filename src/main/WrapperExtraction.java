@@ -3,14 +3,16 @@ import java.util.*;
 
 public class WrapperExtraction {
 	
-	static public Vector KMP(String text, String wrapper)
+	static public Vector KMP(String text, String wrapper,int side)
 	{
 		Vector ans = new Vector();
 		
 		int M = wrapper.length();
 		int N = text.length();
-		int len = 0;
-		int[] lps = new int[len+1];
+/*		System.out.println(M);		
+		System.out.println(N);
+*/		int len = 0;
+		int[] lps = new int[M];
 		
 		int i=1;
 		
@@ -33,7 +35,11 @@ public class WrapperExtraction {
 				}
 			}
 		}
-		i=0;
+/*		for(int mmm=0;mmm<lps.length;mmm++)
+			System.out.println(lps[mmm]);
+
+		System.out.println("");
+*/		i=0;
 		int j=0;
 		while(i<N)
 		{
@@ -44,10 +50,14 @@ public class WrapperExtraction {
 			}
 			if(j==M)
 			{
-				ans.addElement(i);
+				if(side == 0)
+					ans.addElement(i);
+				else
+					ans.addElement(i-j);
+
 				j = lps[j-1];
 			}
-			else if(i<N && wrapper.charAt(j) != wrapper.charAt(i) )
+			else if(i<N && wrapper.charAt(j) != text.charAt(i) )
 			{
 				if(j!=0)
 					j = lps[j-1];
@@ -55,7 +65,7 @@ public class WrapperExtraction {
 					i++;
 			}
 		}
-		
+		System.out.println(ans);
 		return ans;
 		
 	}

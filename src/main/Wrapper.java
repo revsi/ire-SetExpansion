@@ -14,40 +14,49 @@ public class Wrapper {
 	{
 		if(root == null)
 			return;
-		for(int i=0;i<26;i++)
-			traverse(root.child[i],st+(char)('a'+i), side, seedSize);
 		
-		if(st.length() <=5)
+		for(int i=0;i<256;i++)
+			traverse(root.child[i],st+(char)(i), side, seedSize);
+		
+		if(st.length() <=3)
 			return;
-		else if(side == 0)							//Left side wrapper
+		if(side == 0)							//Left side wrapper
 		{
 			int size = root.isEnd.keySet().size();
 			if( size != seedSize)
 				return;
 			Set keys = root.wrapNum.keySet();
+			int fl = 0;
 			for(Object key:keys)
 			{
 				if(wrapSelectLeft.get(key) == null)
 				{
-					wrapSelectLeft.put(keys, 1);
-					wrappersLeft.addElement(st);
+					fl = 1;
+					wrapSelectLeft.put(key, st);
 				}
-			}			
-		}
+			}
+/*			if(fl == 1)
+				wrappersLeft.addElement(st);
+*/		}		
 		else
 		{
 			int size = root.isEnd.keySet().size();
 			if( size != seedSize)
 				return;
 			Set keys = root.wrapNum.keySet();
+			int fl=0;
+
 			for(Object key:keys)
 			{
-				if(wrapSelectLeft.get(key) == null)
+				if(wrapSelectRight.get(key) == null)
 				{
-					wrapSelectRight.put(keys, 1);
-					wrappersRight.addElement(st);
+					fl = 1;
+					wrapSelectRight.put(key, st);
 				}
-			}			
+			}
+/*			if(fl == 1)
+				wrappersRight.addElement(st);
+*/
 		}
 	}
 	
@@ -59,8 +68,10 @@ public class Wrapper {
 		trie.TrieNode trieLeft = trie.newn();
 		trie.TrieNode trieRight = trie.newn();
 		int wrapNum = 1;
+		
 		for(int i=0;i<noOfSeeds;i++)
 		{
+			System.out.println(seedList.get(i));
 			int seedLen = seedList.get(i).length();
 			
 			for(int j=0;j<htmlLen-seedLen+1;j++)
@@ -85,19 +96,93 @@ public class Wrapper {
 						end = j+seedLen+50;
 					else
 						end = htmlLen;
-					String st1="",st2="";
+					String st1="",st2="",st3="";
 					
-					for(int k=j-1;k>=st;k--)
+					for(int k=j-1;k>=st;k--){
 						st1 = st1 + htmlText.charAt(k);
-					
-					for(int k=j+seedLen+1;k<=end;k++)
+//						st3 = htmlText.charAt(k) + st3;
+					}
+					for(int k=j+seedLen;k<=end;k++)
 						st2 = st2 + htmlText.charAt(k);
-
+					
 					trie.insert(trieLeft, st1, i, wrapNum);
 					trie.insert(trieRight, st2, i, wrapNum);
-					
+					wrapNum++;
 				}
 			}
 		}
+		traverse(trieRight, "", 1, 3);
+		traverse(trieLeft, "", 0, 3);
+
+		Set keys = wrapSelectLeft.keySet();
+
+		for(Object key:keys)
+		{
+			if(wrapSelectRight.get(key) != null)
+			{
+				wrappersLeft.add(wrapSelectLeft.get(key));
+				wrappersRight.add(wrapSelectRight.get(key));
+			}
+		}
+		
+		for(int i=0; i< wrappersRight.size();i++)
+		{	
+			for(int j=i+1; j< wrappersRight.size();j++)
+			{
+				if((String)(wrappersRight.get(i)) == (String)(wrappersRight.get(j)) && (String)(wrappersLeft.get(i)) == (String)(wrappersLeft.get(j)))
+				{
+					wrappersLeft.remove(j);
+					wrappersRight.remove(j);
+					j--;
+				}
+			}
+		}
+		for(int i=0; i< wrappersRight.size();i++)
+			System.out.println(wrappersRight.get(i));
+
+		for(int i=0; i< wrappersLeft.size();i++)
+		{	String st1 = wrappersLeft.get(i).toString();
+			String st3 = "";
+			for(int j=0;j<st1.length();j++)
+				st3 = st1.charAt(j) + st3;
+			wrappersLeft.insertElementAt(st3, i);
+			wrappersLeft.remove(i+1);
+		}
+		for(int i=0; i< wrappersLeft.size();i++)
+			System.out.println(wrappersLeft.get(i));
+		
+		WrapperExtraction we = new WrapperExtraction();
+		
+		Vector extractions = new Vector();
+		for(int i=0;i<wrappersLeft.size();i++)
+		{
+			String LHS = wrappersLeft.get(i).toString();
+			String RHS = wrappersRight.get(i).toString();
+			Vector v_LHS = we.KMP(htmlText, LHS, 0);
+			Vector v_RHS = we.KMP(htmlText, RHS, 1);
+			System.out.println(v_LHS);
+			System.out.println(v_RHS);
+			
+			int x=0;
+			int y=0;
+			
+			while(x<v_LHS.size() && y < v_RHS.size())
+			{
+				if((int)v_LHS.get(x) > (int)v_RHS.get(y))
+					y++;
+				else if(x<v_LHS.size()-1 && (int)v_LHS.get(x+1) <(int)v_RHS.get(y))
+					x++;
+				else
+				{
+					extractions.add(htmlText.substring((int)v_LHS.get(x),(int)v_RHS.get(y)));
+					x++;
+					y++;
+				}
+			}
+		}
+		
+		for(int i=0;i<extractions.size();i++)
+			System.out.println(extractions.get(i));
+
 	}
 }

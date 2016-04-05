@@ -5,7 +5,7 @@ public class trie {
 	
 	static class TrieNode
 	{
-		TrieNode[] child;
+		TrieNode[] child = new TrieNode[256];
 		Hashtable isEnd;
 		Hashtable wrapNum;
 	}
@@ -13,7 +13,7 @@ public class trie {
 	public static TrieNode newn()
 	{
 		TrieNode newnode = new TrieNode();
-		for(int i=0;i<26;i++)
+		for(int i=0;i<256;i++)
 		{
 			newnode.child[i] = null;
 		}
@@ -25,20 +25,23 @@ public class trie {
 	{
 		int len = key.length();
 		int index;
-
 		for(int i=0;i<len;i++)
 		{
-			index = (int)(key.charAt(i) - 'a');
-		
+			index = (int)(key.charAt(i));
+	    //    System.out.println(key.charAt(i));
+			if(index <0 || index >255)
+				continue;
 			if(root.child[index] == null)
 			{
 				root.child[index] = newn();
 			}
 			root.isEnd.put(seedNum, 1);
-			root.wrapNum.put(wrapNum, 1);
+//			if(root.wrapNum.size() == 0)
+				root.wrapNum.put(wrapNum, 1);
 			root = root.child[index];
 		}
-		root.wrapNum.put(wrapNum, 1);
+//		if(root.wrapNum.size() == 0)
+			root.wrapNum.put(wrapNum, 1);
 		root.isEnd.put(seedNum, 1);
 	} 
 }

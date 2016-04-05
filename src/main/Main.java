@@ -76,6 +76,46 @@ public class Main {
 			}
 		}
 
+/*		Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the input file.");
+        String inputFilePath = scanner.nextLine(); // Provide input file path containing set of related words
+        
+		BufferedReader reader = null;
+		String line,linet="";
+		ArrayList<String> seedList = new ArrayList<String>();
+		seedList.add("apple");
+		seedList.add("mango");
+		seedList.add("orange");
+		
+		try {
+			reader = new BufferedReader(new FileReader(inputFilePath));
+			while ((line = reader.readLine()) != null) {
+				try {
+					linet += line;
+		
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			System.out.println(linet);
+			reader.close();
+			WrapperExtraction we = new WrapperExtraction();
+			Wrapper wp = new Wrapper();
+			wp.wrap(linet, seedList);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+*/
 	}
 
 }
