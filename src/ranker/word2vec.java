@@ -19,6 +19,14 @@ public class word2vec {
 		//seed.get(index);
 		ArrayList<String> expandedset = new ArrayList<String>();
 		
+		for (int i = 0; i < seed.size(); i++) {
+			for (int j = 0; j < newseeds.size(); j++){
+				/*if (contain.get(i).contains(code.trim())) {
+		            System.out.println(contain.get(i));
+		        }	*/
+			}
+	    }
+		
 		
 		return expandedset;
 	}
