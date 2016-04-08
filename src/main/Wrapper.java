@@ -18,13 +18,14 @@ public class Wrapper {
 		for(int i=0;i<256;i++)
 			traverse(root.child[i],st+(char)(i), side, seedSize);
 		
-		if(st.length() <=3)
+		if(st.length() !=5)
 			return;
 		if(side == 0)							//Left side wrapper
 		{
 			int size = root.isEnd.keySet().size();
-			if( size != seedSize)
+			if( size <1)
 				return;
+
 			Set keys = root.wrapNum.keySet();
 			int fl = 0;
 			for(Object key:keys)
@@ -41,7 +42,7 @@ public class Wrapper {
 		else
 		{
 			int size = root.isEnd.keySet().size();
-			if( size != seedSize)
+			if( size <1)
 				return;
 			Set keys = root.wrapNum.keySet();
 			int fl=0;
@@ -100,11 +101,14 @@ public class Wrapper {
 					
 					for(int k=j-1;k>=st;k--){
 						st1 = st1 + htmlText.charAt(k);
-//						st3 = htmlText.charAt(k) + st3;
+						st3 = htmlText.charAt(k) + st3;
 					}
 					for(int k=j+seedLen;k<=end;k++)
 						st2 = st2 + htmlText.charAt(k);
+//					System.out.println(st2);
+//					System.out.println(st3);
 					
+//					System.out.println("");
 					trie.insert(trieLeft, st1, i, wrapNum);
 					trie.insert(trieRight, st2, i, wrapNum);
 					wrapNum++;
