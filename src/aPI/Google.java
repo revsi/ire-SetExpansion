@@ -27,7 +27,7 @@ public class Google {
 			seedList.add(arr[i]);
 		}
 		
-		int num = 3;
+		int num = 10;
 		System.out.println("searching for :" + searchTerm);
 		String searchURL = GOOGLE_SEARCH_URL + "?q="+searchTerm+"&num="+num;
         //without proper User-Agent, we will get 403 error
@@ -53,27 +53,38 @@ public class Google {
             if(linkHref.substring(7, linkHref.indexOf("&")).contains("http://") || 
             		linkHref.substring(7, linkHref.indexOf("&")).contains("https://" ))
             {
-            	Document doc1 = Jsoup.connect(linkHref.substring(7, linkHref.indexOf("&"))).userAgent("Mozilla/5.0").get(); // HTML source text for all URLS
-               // System.out.println(doc1);
-//            	Wrapper wp = new Wrapper();
+            	//Document doc1 = Jsoup.connect(linkHref.substring(7, linkHref.indexOf("&"))).userAgent("Mozilla/5.0").get(); // HTML source text for all URLS
+            	Document doc1 = null;
+            	try {
+            		  doc1 = Jsoup.connect(linkHref.substring(7, linkHref.indexOf("&"))).timeout(1000000).userAgent("Mozilla/5.0").get();
+    			} catch(Exception e) {
+    				continue;
+    				
+    			}
+//           
            // 	System.out.println(doc1.toString());
   //          	String webDoc =  doc1.toString().replaceAll("!|@|#|\\$|%|~|`|\\^|\\*|\\(|\\)|-|_|\\+|=|\\{|\\}|\\[|\\]|;|:|'|\"|<|>|,|\\.|\\?|/", " ").replaceAll("( )+", " ").trim().toString().toLowerCase();
  //           	webDoc = webDoc.replaceAll("\n", " ").trim().replaceAll("( )+", " ");
            // 	System.out.println(webDoc);
-//            	wp.wrap(webDoc.toString(),seedList);
+//          
             	
-//            	System.out.println(doc1.toString());
+//            	
             	ListFinderHTML extraction = new ListFinderHTML();
-//            	Wrapper extraction = new Wrapper();
             	extraction.setMyHTML(doc1.toString());
-            	extraction.SetHTML("aaa.com");
-            	System.out.println(extraction.getTitle());
-            	System.out.println(extraction.getNextList());	
-            	System.out.println(extraction.getNextList());	
-            	System.out.println(extraction.getNextList());	
-            	System.out.println(extraction.getNextList());	
-            	System.out.println(extraction.getHeader());	
-            	System.out.println(extraction.getDescription());	
+            	extraction.SetHTML();
+            	System.out.println("title is " + extraction.getTitle());
+            	while(true)
+            	{	
+            		System.out.println("list is " + extraction.getNextList());	
+                	System.out.println("list is " + extraction.getNextList());	
+                	System.out.println("list is " +extraction.getNextList());	
+                	System.out.println("list is " +extraction.getNextList());	
+                	System.out.println("list is " +extraction.getHeader());	
+                	System.out.println("list is " +extraction.getDescription());
+            		if(extraction.getNextList() == null)
+            			break;
+            	
+            	}
             }            
         }
 		

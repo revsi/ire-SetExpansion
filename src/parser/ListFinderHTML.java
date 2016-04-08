@@ -22,7 +22,7 @@ public class ListFinderHTML {
 	private String description;
 	private String title;
 
-	public void SetHTML(String myurl) {
+	public void SetHTML() {
 
 		currentpos = -1;
 		prevtable = false;

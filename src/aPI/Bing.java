@@ -68,7 +68,7 @@ public class Bing {
 				
 			}
 			System.out.println(doc);
-			System.out.println("DATA PRINTED");
+		//	System.out.println("DATA PRINTED");
 			//String description=arr1.getJSONObject(i).getString("Description");		// Obtain all the urls for the given search query
 			//@SuppressWarnings("unused")
 			//String title=arr1.getJSONObject(i).getString("Title");
