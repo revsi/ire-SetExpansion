@@ -14,7 +14,7 @@ public class word2vec {
 	}
 	
 	public ArrayList<String> run(ArrayList seed, ArrayList newseeds) throws IOException{
-		File gModel = new File("/Developer/Vector Models/GoogleNews-vectors-negative300.bin.gz");
+		File gModel = new File("~/GoogleNews-vectors-negative300.bin.gz");
 		Word2Vec vec = (Word2Vec) WordVectorSerializer.loadGoogleModel(gModel, true);
 		//seed.get(index);
 		ArrayList<String> expandedset = new ArrayList<String>();

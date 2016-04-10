@@ -17,5 +17,14 @@
 	<classpathentry kind="lib" path="src/supportedJars/twitter4j-core-4.0.2.jar"/>
 	<classpathentry kind="lib" path="src/supportedJars/deeplearning4j-core-0.4-rc3.8.jar"/>
 	<classpathentry kind="lib" path="src/supportedJars/deeplearning4j-nlp-0.4-rc3.8.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/nd4j-api-0.4-rc3.8.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/slf4j-api-1.7.21.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/slf4j-log4j12-1.7.21.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/commons-compress-1.11.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/guava-19.0.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/reflections-0.9.10.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/javassist-3.20.0-GA.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
