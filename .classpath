@@ -26,5 +26,15 @@
 	<classpathentry kind="lib" path="src/supportedJars/guava-19.0.jar"/>
 	<classpathentry kind="lib" path="src/supportedJars/reflections-0.9.10.jar"/>
 	<classpathentry kind="lib" path="src/supportedJars/javassist-3.20.0-GA.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/nd4j-x86-0.4-rc3.8.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/commons-lang3-3.4.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/commons-math3-3.6.1.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/core-1.1.2.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/native_ref-java-1.1.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/nd4j-netlib-blas-0.4-rc3.6.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/netlib-java-1.1.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/spring-context-4.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="src/supportedJars/spring-2.5.6.SEC03.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
