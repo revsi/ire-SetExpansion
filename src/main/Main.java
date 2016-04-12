@@ -3,16 +3,28 @@
  */
 package main;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Scanner;
 
-import org.json.JSONException;
+import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
+import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
+import org.deeplearning4j.models.word2vec.Word2Vec;
+import org.deeplearning4j.util.SerializationUtils;
+import org.nd4j.linalg.factory.Nd4j;
+import org.nd4j.linalg.api.buffer.DataBuffer;
+import org.nd4j.linalg.factory.Nd4j;
+import org.springframework.core.io.ClassPathResource;
+
 
 import aPI.searchAPIs;
+import ranker.W2vtrain;
 import util.Log;
 /**
  * @author sonam
@@ -27,13 +39,13 @@ public class Main {
 	 * @param args
 	 * @throws JSONException 
 	 */
-	public static void main(String[] args) throws JSONException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		Scanner scanner = new Scanner(System.in);
+		//BasicConfigurator.configure();
+		//Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the input file.");
-        String inputFilePath = scanner.nextLine(); // Provide input file path containing set of related words
-        System.out.println("Please enter the output file.");
+        String inputFilePath = "king"; // Provide input file path containing set of related words
+        /*System.out.println("Please enter the output file.");
         String outputFileName = scanner.nextLine();			// Provide output file path which will contain the expanded set
         System.out.println("Please enter the search API you want to use .");
 		String API = scanner.nextLine();
@@ -42,11 +54,26 @@ public class Main {
 		
 		System.out.println(API);
 		BufferedReader reader = null;
-		FileWriter writer = null;
+		FileWriter writer = null;*/
 		String line;
 		ArrayList<String> seedList = new ArrayList<String>();
 		
 		try {
+			new W2vtrain().word2VecTraining();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};								// Training the Word2Vec Model
+
+		Word2Vec vec = SerializationUtils.readObject(new File("vec2.ser"));
+
+		
+		Collection<String> similar=vec.wordsNearest(inputFilePath,10);
+		
+        System.out.println(similar);
+		//seed.get(index);
+		
+	/*	try {
 			reader = new BufferedReader(new FileReader(inputFilePath));
 			writer = new FileWriter(outputFileName);
 			while ((line = reader.readLine()) != null && !line.equals("")) {

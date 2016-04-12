@@ -27,7 +27,7 @@ public class Google {
 			seedList.add(arr[i]);
 		}
 		
-		int num = 10;
+		int num = 5;
 		System.out.println("searching for :" + searchTerm);
 		String searchURL = GOOGLE_SEARCH_URL + "?q="+searchTerm+"&num="+num;
         //without proper User-Agent, we will get 403 error
@@ -79,8 +79,8 @@ public class Google {
                 	System.out.println("list is " + extraction.getNextList());	
                 	System.out.println("list is " +extraction.getNextList());	
                 	System.out.println("list is " +extraction.getNextList());	
-                	System.out.println("list is " +extraction.getHeader());	
-                	System.out.println("list is " +extraction.getDescription());
+                	System.out.println("header is " +extraction.getHeader());	
+                	System.out.println("description is " +extraction.getDescription());
             		if(extraction.getNextList() == null)
             			break;
             	

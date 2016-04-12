@@ -1,0 +1,56 @@
+2016-04-11 23:18:20,381 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+Starting vocabulary building...
+
+2016-04-11 23:30:11,169 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+Starting vocabulary building...
+
+2016-04-11 23:44:55,379 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+Starting vocabulary building...
+
+2016-04-11 23:44:55,629 - [INFO] - from org.deeplearning4j.models.word2vec.wordstore.VocabConstructor in main
+				
+Sequences checked: [201], Current vocabulary size: [1452]
+
+2016-04-11 23:44:56,002 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+Building learning algorithms:
+
+2016-04-11 23:44:56,002 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+          building ElementsLearningAlgorithm: [SkipGram]
+
+2016-04-11 23:44:56,002 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+Starting learning process...
+
+2016-04-11 23:45:03,470 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+Epoch: [1]; Words vectorized so far: [15447];  Lines vectorized so far: [603]; learningRate: [0.01]
+
+2016-04-11 23:53:43,528 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+Starting vocabulary building...
+
+2016-04-11 23:53:43,780 - [INFO] - from org.deeplearning4j.models.word2vec.wordstore.VocabConstructor in main
+				
+Sequences checked: [201], Current vocabulary size: [1452]
+
+2016-04-11 23:53:44,109 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+Building learning algorithms:
+
+2016-04-11 23:53:44,109 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+          building ElementsLearningAlgorithm: [SkipGram]
+
+2016-04-11 23:53:44,109 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+Starting learning process...
+
+2016-04-11 23:53:51,041 - [INFO] - from org.deeplearning4j.models.sequencevectors.SequenceVectors in main
+				
+Epoch: [1]; Words vectorized so far: [15447];  Lines vectorized so far: [603]; learningRate: [0.01]
+
