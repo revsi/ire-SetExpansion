@@ -25,7 +25,7 @@ public class Bing {
 		URL url = null;
 		HttpURLConnection conn = null;
 		BufferedReader br = null;
-		String searchTerm="";
+        String searchTerm=seed.get(0);
 		for(int i=1;i< seed.size();i++)
 		{
 			searchTerm = searchTerm + " " + seed.get(i);
@@ -38,7 +38,7 @@ public class Bing {
 		byte[] accountKeyBytes = Base64.encodeBase64((accountKey + ":" + accountKey).getBytes());
 		String accountKeyEnc = new String(accountKeyBytes);
 		try {
-			url = new URL("https://api.datamarket.azure.com/Data.ashx/Bing/Search/v1/Web?Query=%27" + query + "%27&$top="+"10"+"&$format=json");
+			url = new URL("https://api.datamarket.azure.com/Data.ashx/Bing/Search/v1/Web?Query=%27" + query + "%27&$top="+"5"+"&$format=json");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

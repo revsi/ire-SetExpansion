@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
@@ -43,6 +45,10 @@ public class Main {
 	public static void main(String[] args) {
 		
 		//Logger.getAnonymousLogger().setLevel(Level.OFF);
+
+		
+		Logger mongoLogger = Logger.getLogger( "org.mongodb" ); mongoLogger.setLevel(Level.OFF);
+		Logger mongoLogger2 = Logger.getLogger( "org.reflections" ); mongoLogger.setLevel(Level.OFF);
 
 		// TODO Auto-generated method stub
 		//BasicConfigurator.configure();

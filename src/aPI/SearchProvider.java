@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.jsoup.Jsoup;
 
@@ -35,7 +37,10 @@ public class SearchProvider {
 		}
 		db = mongoClient.getDB("BING");
 		webCollection= db.getCollection("urlCollection");					// Mongo database for storing all the URLs obtained
-		searchCollection = db.getCollection("searchCollection");			// Mongo database for storing all the search queries
+		searchCollection = db.getCollection("searchCollection");
+		// Mongo database for storing all the search queries
+		Logger mongoLogger = Logger.getLogger( "org.mongodb" ); mongoLogger.setLevel(Level.OFF);
+
 	}
 
 
