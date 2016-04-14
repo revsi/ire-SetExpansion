@@ -4,11 +4,12 @@ import twitter4j.api.SearchResource;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 public class Twitter {
 
-	public void Twit(String line) 
+	public void Twit(ArrayList<String> seed, int noOfRes) 
 	{
 		System.getProperties().put("http.proxyHost", "proxy.iiit.ac.in");
 		System.getProperties().put("http.proxyPort", "8080");
@@ -25,12 +26,11 @@ public class Twitter {
       //  System.out.println("Please enter the search term.");
        // String searchTerm = scanner.nextLine();
 		twitter4j.Twitter twitter = tf.getInstance();
-		String arr[];
-		arr = line.split(" ");
-		String searchTerm = arr[0];
-		for(int i=1;i< arr.length;i++)
+		String searchTerm="";
+		for(int i=1;i< seed.size();i++)
 		{
-			searchTerm = searchTerm + " " + arr[i];
+			searchTerm = searchTerm + " " + seed.get(i);
+			
 		}
 	//	searchTerm = "honda chevrolet maruti suzuki";
 		//System.out.println(searchTerm);

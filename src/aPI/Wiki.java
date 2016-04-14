@@ -4,13 +4,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import org.apache.http.client.HttpClient;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 public class Wiki {
 
-	public void Wiki(String str) throws IOException {
+	public void Wiki(ArrayList<String> seed, int noOfRes) throws IOException {
 		// TODO Auto-generated constructor stub
 		String url = "https://en.wikipedia.org/w/";
 		HttpClient client;
@@ -20,13 +21,13 @@ public class Wiki {
 		int count;
 		String urlOffset = "&gsrlimit=50&gsroffset=";
 		String offset = "";
-		String arr[];
-		arr = str.split(" ");
+		
 		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy.iiit.ac.in", 8080));
-		String searchTerm = arr[0];
-		for(int j=1;j< arr.length;j++)
+		String searchTerm="";
+		for(int j=1;j< seed.size();j++)
 		{
-			searchTerm = searchTerm + " " + arr[j];
+			searchTerm = searchTerm + " " + seed.get(j);
+			
 		}
 		System.out.println(searchTerm);
 		String query = searchTerm;

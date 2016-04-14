@@ -3,6 +3,7 @@ package ranker;
 import java.io.File;
 import java.util.ArrayList;
 
+import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
 import org.deeplearning4j.models.word2vec.Word2Vec;
 import org.deeplearning4j.text.tokenization.tokenizer.Tokenizer;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory;
@@ -33,6 +34,13 @@ public class seed {
 					}
 		}
 		return newSeed;	
+	}
+
+
+	public static ArrayList<String> expandSeed(ArrayList<String> seedList, int noofresults, String searchEngine,
+			WordVectors vec) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

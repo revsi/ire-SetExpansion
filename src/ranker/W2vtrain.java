@@ -2,7 +2,9 @@ package ranker;
 
 
 import java.io.File;
+import java.util.Collection;
 
+import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
 import org.deeplearning4j.models.word2vec.Word2Vec;
 import org.deeplearning4j.text.sentenceiterator.LineSentenceIterator;
 import org.deeplearning4j.text.sentenceiterator.SentenceIterator;
@@ -17,7 +19,7 @@ public class W2vtrain {
 	private SentenceIterator iter;
 	private Word2Vec vec;
 
-	public final static String VEC_PATH = "vec2.ser";
+	public final static String VEC_PATH = "vec.ser";
 
 	public W2vtrain() throws Exception {
 		this.iter = new LineSentenceIterator(new File("TrainingDataSet.txt"));   // Training Dataset
@@ -47,14 +49,30 @@ public class W2vtrain {
 				}
 			});
 
-			int layerSize = 300;
-			vec = new Word2Vec.Builder().sampling(1e-5)
-					.minWordFrequency(0).batchSize(1000).useAdaGrad(false).layerSize(layerSize)
-					.iterations(3).learningRate(0.025).minLearningRate(1e-2).negativeSample(10)			
-					.iterate(iter).tokenizerFactory(t).build();						// set the parameters for the word2vec model
+			int layerSize = 200;
+			
+			vec = new Word2Vec.Builder()
+					.sampling(1e-5)
+					.minWordFrequency(5)
+					.batchSize(1000)
+					.useAdaGrad(false)
+					.layerSize(layerSize)
+					.seed(42)
+					.iterations(1)
+					.learningRate(0.025)
+					.minLearningRate(1e-2)
+					.negativeSample(10)			
+					.iterate(iter)
+					.tokenizerFactory(t)
+					.build();						// set the parameters for the word2vec model
 
 			vec.fit();
-			SerializationUtils.saveObject(vec, new File(VEC_PATH));
+			System.out.println("Evaluate model....");
+		    double sim = vec.similarity("country", "june");
+		    System.out.println("Similarity between country and june: " + sim);
+		    Collection<String> similar = vec.wordsNearest("country", 10);
+		    System.out.println("Similar words to 'country' : " + similar);
+		    WordVectorSerializer.writeWordVectors(vec, "vec.ser");
 		}else{
 			System.out.println("System Already Trained !!!!! :)");			
 		}

@@ -1,47 +1,47 @@
 package aPI;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.json.JSONException;
 
 public class searchAPIs
 {
-	public void apiType(String api,String line,int noOfResults) throws IOException, JSONException
+	public ArrayList<String> apiType(String api,ArrayList<String> seedList,int noOfResults) throws IOException, JSONException
 	{
 		
 		api = api.toUpperCase();
 		switch (api) {
 		case "BING":
 			Bing b = new Bing();
-		    b.Bin(line);
-			break;
+		    return b.Bin(seedList,noOfResults);
+			
 		case "GOOGLE":
 			Google gog = new Google();
-			gog.Google(line);
-			break;
+			return gog.Google(seedList,noOfResults);
+			
 		case "TWITTER":
 			Twitter twit = new Twitter();
-			twit.Twit(line);
+			twit.Twit(seedList,noOfResults);
 			break;
 		case "YANDEX":
 			Yandex yan = new Yandex();
-			yan.yandex(line);
-			 break;
+			return yan.yandex(seedList,noOfResults);
+			
 		case "FAROO":
 			Faroo fr = new Faroo();
-			fr.Faroo(line);
+			fr.Faroo(seedList,noOfResults);
 		      break;
 		case "WIKI":
 			Wiki wk = new Wiki();
-			wk.Wiki(line);
+			wk.Wiki(seedList,noOfResults);
 			 break;
 		default :
 			System.out.println("Sorry , you have entered a wrong API !!!!");
 			break;
-		
-		
-		
+				
 	}
+		return seedList;
 
  }
 }

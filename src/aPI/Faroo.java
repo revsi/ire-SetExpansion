@@ -7,6 +7,7 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ import util.Log;
 
 public class Faroo {
 
-	public void Faroo(String str) throws UnsupportedEncodingException {
+	public void Faroo(ArrayList<String> seed, int noOfRes) throws UnsupportedEncodingException {
 		// TODO Auto-generated constructor stub
 		int starting=1,records = 10;
 		Set<String> result=new HashSet<String>();
@@ -30,12 +31,11 @@ public class Faroo {
 		HttpURLConnection conn=null;
 		BufferedReader br=null;
 		String FarooKey = "uK3CYibtAnvuUpgG3JR4TrU7h6c_";
-		String arr[];
-		arr = str.split(" ");
-		String searchTerm = arr[0];
-		for(int i=1;i< arr.length;i++)
+		String searchTerm="";
+		for(int i=1;i< seed.size();i++)
 		{
-			searchTerm = searchTerm + " " + arr[i];
+			searchTerm = searchTerm + " " + seed.get(i);
+			
 		}
 		String query;
 

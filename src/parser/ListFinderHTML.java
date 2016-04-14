@@ -1,7 +1,7 @@
 
 package parser;
 
-import java.util.*;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,7 +22,7 @@ public class ListFinderHTML {
 	private String description;
 	private String title;
 
-	public void SetHTML() {
+	public void SetHTML(String myurl) {
 
 		currentpos = -1;
 		prevtable = false;

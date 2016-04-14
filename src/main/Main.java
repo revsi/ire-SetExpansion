@@ -24,7 +24,9 @@ import org.springframework.core.io.ClassPathResource;
 
 
 import aPI.searchAPIs;
+import parser.Seed;
 import ranker.W2vtrain;
+import ranker.seed;
 import util.Log;
 /**
  * @author sonam
@@ -44,7 +46,7 @@ public class Main {
 		//BasicConfigurator.configure();
 		//Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the input file.");
-        String inputFilePath = "king"; // Provide input file path containing set of related words
+        String inputFilePath = "input"; // Provide input file path containing set of related words
         /*System.out.println("Please enter the output file.");
         String outputFileName = scanner.nextLine();			// Provide output file path which will contain the expanded set
         System.out.println("Please enter the search API you want to use .");
@@ -55,9 +57,9 @@ public class Main {
 		System.out.println(API);
 		BufferedReader reader = null;
 		FileWriter writer = null;*/
-		String line;
+		String line = "honda bmw chevrolet ford";
 		ArrayList<String> seedList = new ArrayList<String>();
-		
+
 		try {
 			new W2vtrain().word2VecTraining();
 		} catch (Exception e) {
@@ -65,12 +67,34 @@ public class Main {
 			e.printStackTrace();
 		};								// Training the Word2Vec Model
 
-		Word2Vec vec = SerializationUtils.readObject(new File("vec2.ser"));
+		WordVectors vec = null;
+		try {
+			vec = WordVectorSerializer.loadTxtVectors(new File("vec.ser"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String arr[];
+		arr = line.split(" ");
+		for(int i=0;i<arr.length;i++)
+		{
+			seedList.add(arr[i]);
+		}
+		
+		       
+        
+		String searchEngine = "bing";
+		int noofresults = 10;
+		
+		System.out.println(seedList);
+		
+		try {
+			ArrayList<String> list = Seed.expandSeed(seedList,noofresults,searchEngine, vec);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		
-		Collection<String> similar=vec.wordsNearest(inputFilePath,10);
-		
-        System.out.println(similar);
 		//seed.get(index);
 		
 	/*	try {

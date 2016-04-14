@@ -4,6 +4,7 @@ import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +17,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 public class Yandex
 {
-	public void yandex(String str)
+	public ArrayList<String> yandex(ArrayList<String> seed, int noOfRes)
 		{
 		System.getProperties().put("http.proxyHost", "proxy.iiit.ac.in");
 		System.getProperties().put("http.proxyPort", "8080");
@@ -28,24 +29,24 @@ public class Yandex
 		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy.iiit.ac.in", 8080));  // remove if not under a proxy
 		HttpURLConnection conn=null;
 		BufferedReader br = null;
-		String arr[];
-		arr = str.split(" ");
-		String searchTerm = arr[0];
-		for(int i=1;i< arr.length;i++)
+		String searchTerm="";
+		for(int i=0;i< seed.size();i++)
 		{
-			searchTerm = searchTerm + " " + arr[i];
+			searchTerm = searchTerm + " " + seed.get(i);
+			
 		}
 		String query = searchTerm;
 		
-		System.out.println(query);
+		System.out.println("query is " +query);
 		query = query.replaceAll(" ","%20");
+		ArrayList<String> listpages = new ArrayList<String>();
 		try{
 			while(starting < records)
 			{
 				//System.out.println("inside");
 				String start=Integer.toString(starting);
 				url=new URL("https://xmlsearch.yandex.com/xmlsearch?l10n=en&user=uid-lygh3cov&key="+YandexKey+"&query="+query+"&page="+start);
-				System.out.println(url);
+				//System.out.println(url);
 				conn=(HttpURLConnection) url.openConnection(proxy);
 				conn.setRequestMethod("GET");
 				conn.disconnect();
@@ -56,7 +57,7 @@ public class Yandex
 			    
 				NodeList nList = doc.getElementsByTagName("group");
 				System.out.println(nList.getLength()); 
-		
+				
 				for (int temp = 0; temp < nList.getLength(); temp++)
 				{
 					Node nNode = nList.item(temp);
@@ -67,6 +68,7 @@ public class Yandex
 						Element eElement = (Element) nNode;
 						 String resp=eElement.getElementsByTagName("url").item(0).getTextContent();// obtain all the urls for a given query
 						 System.out.println(resp);
+						 listpages.add(resp);
 						 finalresult.add(resp);
 					}
 				}
@@ -75,5 +77,11 @@ public class Yandex
 		}catch(Exception E){
 			System.out.println("Error");
 		}
+		System.out.println("testing");
+		for(int k = 0; k < listpages.size();k++)
+		{
+			System.out.println(listpages.get(k));
+		}
+		return listpages;
 }
 }
