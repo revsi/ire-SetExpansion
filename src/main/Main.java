@@ -27,7 +27,6 @@ import aPI.searchAPIs;
 import parser.Seed;
 import ranker.W2vtrain;
 import ranker.seed;
-import util.Log;
 /**
  * @author sonam
  *
@@ -42,11 +41,13 @@ public class Main {
 	 * @throws JSONException 
 	 */
 	public static void main(String[] args) {
+		
+		//Logger.getAnonymousLogger().setLevel(Level.OFF);
+
 		// TODO Auto-generated method stub
 		//BasicConfigurator.configure();
-		//Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter the input file.");
-        String inputFilePath = "input"; // Provide input file path containing set of related words
+		Scanner scanner = new Scanner(System.in);
+      //  String inputFilePath = "input"; // Provide input file path containing set of related words
         /*System.out.println("Please enter the output file.");
         String outputFileName = scanner.nextLine();			// Provide output file path which will contain the expanded set
         System.out.println("Please enter the search API you want to use .");
@@ -57,16 +58,6 @@ public class Main {
 		System.out.println(API);
 		BufferedReader reader = null;
 		FileWriter writer = null;*/
-		String line = "honda bmw chevrolet ford";
-		ArrayList<String> seedList = new ArrayList<String>();
-
-		try {
-			new W2vtrain().word2VecTraining();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		};								// Training the Word2Vec Model
-
 		WordVectors vec = null;
 		try {
 			vec = WordVectorSerializer.loadTxtVectors(new File("vec.ser"));
@@ -74,26 +65,49 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String arr[];
-		arr = line.split(" ");
-		for(int i=0;i<arr.length;i++)
-		{
-			seedList.add(arr[i]);
-		}
+        String y = "exit";
+        while(true )
+        {
+            System.out.println("Please enter your Query. Type EXIT to end the program");
+    		String query = scanner.nextLine();
+
+        	if(query.toLowerCase().equals(y))
+        		 System.exit(0);
+        	else
+        	{
+        		ArrayList<String> seedList = new ArrayList<String>();
+
+        		try {
+        			new W2vtrain().word2VecTraining();
+        		} catch (Exception e) {
+        			// TODO Auto-generated catch block
+        			e.printStackTrace();
+        		};								// Training the Word2Vec Model
+
+        		String arr[];
+        		arr = query.split(" ");
+        		for(int i=0;i<arr.length;i++)
+        		{
+        			seedList.add(arr[i]);
+        		}
+        		
+        		       
+                
+        		String searchEngine = "bing";
+        		int noofresults = 10;
+        		
+        		System.out.println(seedList);
+        		
+        		try {
+        			ArrayList<String> list = Seed.expandSeed(seedList,noofresults,searchEngine, vec);
+        		} catch (Exception e) {
+        			// TODO Auto-generated catch block
+        			e.printStackTrace();
+        		}
+        		
+        	}
+        }
 		
-		       
-        
-		String searchEngine = "bing";
-		int noofresults = 10;
-		
-		System.out.println(seedList);
-		
-		try {
-			ArrayList<String> list = Seed.expandSeed(seedList,noofresults,searchEngine, vec);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		//seed.get(index);
 		

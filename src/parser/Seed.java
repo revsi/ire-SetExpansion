@@ -80,7 +80,7 @@ public class Seed {
 					}
 				}
 			}
-			System.out.println("==+++++++++++++++++++++++++++++++====================="+words);
+			System.out.println("==+++++++++++++++++++++++++++++++=====================");
 			for (String word : tokens) {
 				d = 0;
 				if (isValidWord(word) && !seedList.contains(word)
