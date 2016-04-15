@@ -22,6 +22,8 @@ public class Bing {
 	{
 		System.getProperties().put("http.proxyHost", "proxy.iiit.ac.in");
 		System.getProperties().put("http.proxyPort", "8080");
+		System.getProperties().put("http.noProxy", "127.0.0.1");
+
 		URL url = null;
 		HttpURLConnection conn = null;
 		BufferedReader br = null;

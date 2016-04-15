@@ -28,8 +28,8 @@ public class SearchProvider {
 
 	static {
 		try{
-			System.setProperty("https.proxyHost", "proxy.iiit.ac.in");
-			System.setProperty("https.proxyPort", "8080");						// Remove these lines if not under a proxy
+		//	System.setProperty("https.proxyHost", "proxy.iiit.ac.in");
+		//	System.setProperty("https.proxyPort", "8080");						// Remove these lines if not under a proxy
 
 			mongoClient = new MongoClient();
 		} catch (Exception e) {

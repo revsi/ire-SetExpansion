@@ -21,8 +21,6 @@ public class Wiki {
 		int count;
 		String urlOffset = "&gsrlimit=50&gsroffset=";
 		String offset = "";
-		
-		Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy.iiit.ac.in", 8080));
 		String searchTerm="";
 		for(int j=1;j< seed.size();j++)
 		{

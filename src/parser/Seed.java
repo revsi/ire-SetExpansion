@@ -1,7 +1,6 @@
 package parser;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,19 +15,12 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.Map.Entry;
 
-
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
-import org.deeplearning4j.models.word2vec.Word2Vec;
-import org.deeplearning4j.text.tokenization.tokenizer.Tokenizer;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
-import org.deeplearning4j.util.SerializationUtils;
 import org.jsoup.Jsoup;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCursor;
 
-import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import util.Porterstemmer;
 import aPI.SearchProvider;
 import aPI.searchAPIs;
@@ -45,6 +37,8 @@ public class Seed {
 	private static TokenizerFactory tokenizer =  new DefaultTokenizerFactory();;
 
 
+	static String urlString = "";
+	
 	public static ArrayList<String> expandSeed(ArrayList<String> seedList, int noOfResults, String searchEngine, WordVectors vec) throws Exception {
 		searchAPIs sp = new searchAPIs();
 		StringBuilder tempSeed = new StringBuilder();
@@ -175,6 +169,29 @@ public class Seed {
 		}
 		return true;
 	}
+	
+	/*public static double similarityscore(String word1, String word2) throws IOException{
+		
+		System.out.println(word1+"================"+word2);
+
+		System.getProperties().put("http.proxyHost", "");
+		System.getProperties().put("http.proxyPort", "");
+		
+		urlString = "http://127.0.0.1/word2vec/similarity?w1=";
+		urlString = urlString + word1 + "&w2=" + word2;
+		
+		JSONTokener tokener = new JSONTokener(wikiRequest.openStream());
+
+
+		System.out.println("================ score ======== "+score);
+
+		if (code == 200){
+			return Double.parseDouble(score);
+		}
+		else{
+			return 0.0;
+		}
+	}*/
 	
 
 	
