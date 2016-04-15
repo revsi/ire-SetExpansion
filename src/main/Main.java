@@ -2,15 +2,24 @@
  * 
  */
 package main;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Scanner;
 
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
+import org.slf4j.LoggerFactory;
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 
+import ch.qos.logback.classic.Level;
 import parser.Seed;
 import ranker.W2vtrain;
 import twitter4j.JSONException;
@@ -37,6 +46,11 @@ public class Main {
  
 		WordVectors vec = null;
 
+		Logger root = (Logger) LoggerFactory
+		        .getLogger(Logger.ROOT_LOGGER_NAME);
+
+		root.setLevel(Level.OFF);
+		
 	    try {
 			//vec = WordVectorSerializer.loadTxtVectors(new File("dep.words"));
 			
@@ -46,9 +60,31 @@ public class Main {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	    HashSet<String> stopWords = new HashSet<String>();
+
+		BufferedReader reader=null;
+
 		
-		Collection<String> similar = vec.wordsNearest("india", 10);
-		System.out.println("Similar words to 'india' : " + similar);
+		try {
+			reader = new BufferedReader(new FileReader("stopwords"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			stopWords.addAll( Arrays.asList(reader.readLine().split(",")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}				// Read file containing stop words
+		try {
+			reader.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	//	Collection<String> similar = vec.wordsNearest("india", 10);
+	//	System.out.println("Similar words to 'india' : " + similar);
 	    
         String y = "exit";
         while(true )
@@ -62,12 +98,12 @@ public class Main {
         	{
         		ArrayList<String> seedList = new ArrayList<String>();
 
-        		try {
+        	/*	try {
         			new W2vtrain().word2VecTraining();
         		} catch (Exception e) {
         			// TODO Auto-generated catch block
         			e.printStackTrace();
-        		};								// Training the Word2Vec Model
+        		};		*/						// Training the Word2Vec Model
 
         		String arr[];
         		arr = query.split(" ");
@@ -79,12 +115,10 @@ public class Main {
         		       
                 
         		String searchEngine = "bing";
-        		int noofresults = 10;
-        		
-        		System.out.println(seedList);
+        		int noofresults = 10;      	
         		
         		try {
-        			ArrayList<String> list = Seed.expandSeed(seedList,noofresults,searchEngine, vec);
+        			ArrayList<String> list = Seed.expandSeed(seedList,noofresults,searchEngine, vec,stopWords);
         		} catch (Exception e) {
         			// TODO Auto-generated catch block
         			e.printStackTrace();

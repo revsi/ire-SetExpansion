@@ -64,7 +64,6 @@ public class Bing {
 		for (int i = 0; i < arr1.length(); i++){
 			String post_id = arr1.getJSONObject(i).getString("Url");
 			listpages.add(post_id);
-			System.out.println(post_id);
 		/*	Document doc =null;
 			try {
 				doc = Jsoup.connect(post_id).timeout(1000000).userAgent("Mozilla/5.0").get();

@@ -26,10 +26,6 @@ import aPI.SearchProvider;
 import aPI.searchAPIs;
 import parser.ListFinderHTML;
 
-
-
-
-
 public class Seed {
 	
 
@@ -39,7 +35,7 @@ public class Seed {
 
 	static String urlString = "";
 	
-	public static ArrayList<String> expandSeed(ArrayList<String> seedList, int noOfResults, String searchEngine, WordVectors vec) throws Exception {
+	public static ArrayList<String> expandSeed(ArrayList<String> seedList, int noOfResults, String searchEngine, WordVectors vec, HashSet<String> stopWords) throws Exception {
 		searchAPIs sp = new searchAPIs();
 		StringBuilder tempSeed = new StringBuilder();
 		for(String seed : seedList){
@@ -53,11 +49,9 @@ public class Seed {
 		HashMap<String, Double> distance = new HashMap<>();
 
 		double d = 0.0;
-
-		System.out.println("listing urls");			
+		
 		ArrayList<String> listpages = sp.apiType(searchEngine, seedList, noOfResults);
 		// Query the given seed list in the required search engine
-		System.out.println(listpages.size());
 		for(int j=0; j<listpages.size(); j++){
 			
 			String text = "";
@@ -74,10 +68,9 @@ public class Seed {
 					}
 				}
 			}
-			System.out.println("==+++++++++++++++++++++++++++++++=====================");
 			for (String word : tokens) {
 				d = 0;
-				if (isValidWord(word) && !seedList.contains(word)
+				if (isValidWord(word, stopWords) && !seedList.contains(word)
 						&& !distance.containsKey(word)) {
 					for (String seedWord : seedList) {
 						d += vec.similarity(word, seedWord);
@@ -105,13 +98,12 @@ public class Seed {
 					return 1;
 			}
 		});
-		
+		System.out.println("================= EXPANDED SET =================");
 		ArrayList<String> retValue = new ArrayList<>();
 		for (int i = 0; i < noOfResults && i < list.size(); i++) {
-			System.out.println(list.get(i));
-			retValue.add(list.get(i).getKey());
+			System.out.println(" -> "+list.get(i).getKey());
+			//retValue.add(list.get(i).getKey());
 		}
-		System.out.println("=================NEW SEED " +retValue+"===============");
 		//System.out.println("New Seed :  "+tempSeed.toString());
 	return seedList;
 	}
@@ -136,31 +128,9 @@ public class Seed {
 		return tokens;
 	}
 
-	public static boolean isValidWord(String smallWord) {
+	public static boolean isValidWord(String smallWord, HashSet<String> stopWords) {
 		//Matcher matcher = nonWordPattern.matcher(smallWord);
-		HashSet<String> stopWords = new HashSet<String>();
-
-		BufferedReader reader=null;
-
 		
-		try {
-			reader = new BufferedReader(new FileReader("stopwords"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			stopWords.addAll( Arrays.asList(reader.readLine().split(",")));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}				// Read file containing stop words
-		try {
-			reader.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		//if(matcher.find() || stopWords.contains(smallWord) || smallWord.length()<2 ){
 		if(smallWord.length()<=2 || stopWords.contains(smallWord)){								 // Consider words of length greater than 2 and are not stop words					
