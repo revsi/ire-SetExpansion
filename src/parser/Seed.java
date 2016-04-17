@@ -70,6 +70,7 @@ public class Seed {
 			}
 			for (String word : tokens) {
 				d = 0;
+				//word = getStemmedWord(word);
 				if (isValidWord(word, stopWords) && !seedList.contains(word)
 						&& !distance.containsKey(word)) {
 					for (String seedWord : seedList) {

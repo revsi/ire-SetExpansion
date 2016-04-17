@@ -16,7 +16,7 @@ public class Google {
 	{
 		System.getProperties().put("http.proxyHost", "proxy.iiit.ac.in");
 		System.getProperties().put("http.proxyPort", "8080");
-		String GOOGLE_SEARCH_URL = "https://www.google.com/search";
+		String GOOGLE_SEARCH_URL = "http://www.google.com/search";
         String searchTerm=seed.get(0);
 		for(int i=1;i<seed.size();i++)
 		{
@@ -24,12 +24,10 @@ public class Google {
 			
 		}
 		
-		int num = 10;
-		System.out.println("searching for :" + searchTerm);
+		int num = 5;
 		String searchURL = GOOGLE_SEARCH_URL + "?q="+searchTerm+"&num="+num;
         //without proper User-Agent, we will get 403 error
 		
-		System.out.println(searchURL);
 		Document doc =
 			    Jsoup.connect(searchURL)
 			         .userAgent("Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
@@ -46,8 +44,8 @@ public class Google {
         for (Element result : results) {
             String linkHref = result.attr("href");
             String linkText = result.text();
-            if(linkHref.substring(7, linkHref.indexOf("&")).contains("http://") || 
-            		linkHref.substring(7, linkHref.indexOf("&")).contains("https://" ))
+            if(linkHref.substring(7, linkHref.indexOf("&")).contains("http://")/* || 
+            		linkHref.substring(7, linkHref.indexOf("&")).contains("https://" )*/)
             {
             	listpages.add(linkHref.substring(7, linkHref.indexOf("&")));
             	//Document doc1 = Jsoup.connect(linkHref.substring(7, linkHref.indexOf("&"))).userAgent("Mozilla/5.0").get(); // HTML source text for all URLS

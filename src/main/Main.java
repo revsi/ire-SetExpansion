@@ -9,19 +9,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Scanner;
 
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
 import org.slf4j.LoggerFactory;
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
 
 import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import parser.Seed;
-import ranker.W2vtrain;
 import twitter4j.JSONException;
 /**
  * @author sonam
@@ -51,10 +48,14 @@ public class Main {
 
 		root.setLevel(Level.OFF);
 		
+		//LoggerContext loggerContext = (LoggerContext) org.slf4j.LoggerFactory.getILoggerFactory();
+
+		//loggerContext.stop();
+		
 	    try {
 			//vec = WordVectorSerializer.loadTxtVectors(new File("dep.words"));
 			
-			vec = WordVectorSerializer.loadTxtVectors(new File("glove_data_200.txt"));
+			vec = WordVectorSerializer.loadTxtVectors(new File("wiki_model.txt"));
 
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
@@ -87,17 +88,20 @@ public class Main {
 	//	System.out.println("Similar words to 'india' : " + similar);
 	    
         String y = "exit";
+        int noofresults = 7;
         while(true )
         {
-            System.out.println("Please enter your Query. Type EXIT to end the program");
+            System.out.println("Please enter your Query or Type EXIT to end the program");
     		String query = scanner.nextLine();
-
+    		
         	if(query.toLowerCase().equals(y))
-        		 System.exit(0);
+        	{
+        		System.out.println("program terminated!!!");
+        		System.exit(0);
+        	}
         	else
         	{
         		ArrayList<String> seedList = new ArrayList<String>();
-
         	/*	try {
         			new W2vtrain().word2VecTraining();
         		} catch (Exception e) {
@@ -114,8 +118,8 @@ public class Main {
         		
         		       
                 
-        		String searchEngine = "bing";
-        		int noofresults = 10;      	
+        		String searchEngine = "google";
+        		     	
         		
         		try {
         			ArrayList<String> list = Seed.expandSeed(seedList,noofresults,searchEngine, vec,stopWords);
